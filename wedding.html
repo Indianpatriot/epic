@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Events - Epic Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Wedding Page Specific Styles */
+        .wedding-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            margin-top: 0;
+            position: relative;
+        }
+
+        .wedding-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .wedding-hero-content {
+            max-width: 800px;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .wedding-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-family: 'Tangerine', cursive;
+            font-weight: 700;
+        }
+
+        .wedding-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wedding-services {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.4rem;
+        }
+
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .wedding-gallery {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        .testimonials {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 50px auto 0;
+            position: relative;
+        }
+
+        .testimonial-slide {
+            text-align: center;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .client-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid #e91e63;
+        }
+
+        .client-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .client-quote {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .client-name {
+            font-weight: 600;
+            color: #e91e63;
+        }
+
+        .pricing {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-header {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .pricing-features {
+            padding: 30px;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .wedding-hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-cards, .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="rangoli"></div>
+        <div class="diya diya-1"></div>
+        <div class="diya diya-2"></div>
+        <div class="diya diya-3"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/120/120" alt="Epic Events Logo" class="logo-img">
+            <h1>Epic Events</h1>
+        </div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#programs" class="active">Programs <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="wedding.html" class="active">Weddings</a></li>
+                        <li><a href="corporate.html">Corporate</a></li>
+                        <li><a href="cultural.html">Cultural Events</a></li>
+                        <li><a href="private.html">Private Celebrations</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#performers">Performers</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#book" class="book-btn">Book an Event</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <section class="wedding-hero">
+        <div class="wedding-hero-content">
+            <h1>Dream Wedding Events</h1>
+            <p>Create unforgettable memories with our bespoke wedding planning services. From intimate ceremonies to grand celebrations, we make your dream wedding a reality.</p>
+            <a href="#contact" class="btn">Plan Your Wedding</a>
+        </div>
+    </section>
+
+    <section class="wedding-services">
+        <div class="container">
+            <h2 class="section-title">Our Wedding Services</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Wedding Planning">
+                    </div>
+                    <div class="service-content">
+                        <h3>Full Wedding Planning</h3>
+                        <p>Our comprehensive wedding planning service takes care of every detail from venue selection to day-of coordination.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Destination Weddings">
+                    </div>
+                    <div class="service-content">
+                        <h3>Destination Weddings</h3>
+                        <p>Turn your dream destination into the perfect backdrop for your special day with our specialized planning services.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Wedding Decor">
+                    </div>
+                    <div class="service-content">
+                        <h3>Decor & Styling</h3>
+                        <p>Transform your venue with our custom decor and styling services, creating a magical atmosphere for your celebration.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wedding-gallery">
+        <div class="container">
+            <h2 class="section-title">Wedding Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Wedding Photo 1">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Wedding Photo 2">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Wedding Photo 3">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Wedding Photo 4">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Wedding Photo 5">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Wedding Photo 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Happy Couples</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <div class="client-img">
+                        <img src="/api/placeholder/200/200" alt="Client">
+                    </div>
+                    <p class="client-quote">"Epic Events made our dream wedding come true! Every detail was perfect, and they made the planning process so stress-free. We couldn't have asked for better service or a more beautiful day."</p>
+                    <p class="client-name">Priya & Raj</p>
+                </div>
+                <!-- More testimonials would be controlled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Wedding Packages</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Essential</h3>
+                        <div class="price">₹1,50,000</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Day-of Coordination</li>
+                            <li>Venue Selection Assistance</li>
+                            <li>Vendor Recommendations</li>
+                            <li>Basic Decor Package</li>
+                            <li>Up to 100 Guests</li>
+                        </ul>
+                        <a href="#book" class="btn">Choose Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price">₹3,50,000</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Full Wedding Planning</li>
+                            <li>Custom Decor & Styling</li>
+                            <li>Premium Vendor Management</li>
+                            <li>Photography & Videography</li>
+                            <li>Up to 250 Guests</li>
+                        </ul>
+                        <a href="#book" class="btn">Choose Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Luxury</h3>
+                        <div class="price">₹7,00,000+</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Comprehensive Planning</li>
+                            <li>Luxury Decor & Design</li>
+                            <li>Premium Entertainment</li>
+                            <li>Complete Media Package</li>
+                            <li>Unlimited Guests</li>
+                        </ul>
+                        <a href="#book" class="btn">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Start Planning Your Dream Wedding</h2>
+            <p>Let us help you create the wedding day you've always imagined. Contact our team today to begin your journey.</p>
+            <a href="#book" class="btn">Book a Consultation</a>
+        </div>
+    </section>
+
+    <section id="book" class="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Wedding Consultation</h2>
+            <form class="booking-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Your Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" placeholder="Wedding Date" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="" disabled selected>Select Package</option>
+                        <option value="essential">Essential Package</option>
+                        <option value="premium">Premium Package</option>
+                        <option value="luxury">Luxury Package</option>
+                        <option value="custom">Custom Requirements</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Tell us about your wedding vision" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/api/placeholder/120/120" alt="Epic Events Logo">
+                    <h3>Epic Events</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="wedding.html">Weddings</a></li>
+                        <li><a href="corporate.html">Corporate Events</a></li>
+                        <li><a href="cultural.html">Cultural Events</a></li>
+                        <li><a href="private.html">Private Celebrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Event Street, Mumbai, India</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@epicevents.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Epic Events. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('#navbar').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Testimonial Slider (simple version - in production would use a proper slider library)
+        // This is a placeholder for demonstration purposes
+        const testimonials = [
+            {
+                image: "/api/placeholder/200/200",
+                quote: "Epic Events made our dream wedding come true! Every detail was perfect, and they made the planning process so stress-free.",
+                name: "Priya & Raj"
+            },
+            {
+                image: "/api/placeholder/200/200",
+                quote: "We couldn't be happier with how our wedding turned out. The team at Epic Events went above and beyond our expectations!",
+                name: "Anita & Vikram"
+            },
+            {
+                image: "/api/placeholder/200/200",
+                quote: "From our first meeting to the last dance, Epic Events provided exceptional service. Our guests are still talking about it!",
+                name: "Meera & Arjun"
+            }
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialSlide = document.querySelector('.testimonial-slide');
+
+        function changeTestimonial() {
+            const testimonial = testimonials[currentTestimonial];
+            testimonialSlide.innerHTML = `
+                <div class="client-img">
+                    <img src="${testimonial.image}" alt="Client">
+                </div>
+                <p class="client-quote">"${testimonial.quote}"</p>
+                <p class="client-name">${testimonial.name}</p>
+            `;
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+
+        // Change testimonial every 5 seconds
+        setInterval(changeTestimonial, 5000);
+
+        // Gallery image modal functionality would be added here in a production site
+    </script>
+</body>
+</html>

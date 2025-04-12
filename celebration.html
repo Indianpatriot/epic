@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Celebrations - Epic Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Celebrations Page Specific Styles */
+        .celebrations-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            margin-top: 0;
+            position: relative;
+        }
+
+        .celebrations-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .celebrations-hero-content {
+            max-width: 800px;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .celebrations-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .celebrations-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .celebration-services {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.4rem;
+        }
+
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .why-choose {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature p {
+            color: #666;
+        }
+
+        .celebrations-gallery {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 50px auto 0;
+            position: relative;
+        }
+
+        .testimonial-slide {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .client-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid #e91e63;
+        }
+
+        .client-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .client-quote {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .client-name {
+            font-weight: 600;
+            color: #e91e63;
+        }
+
+        .pricing {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-header {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .pricing-features {
+            padding: 30px;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .celebrations-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-cards, .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="rangoli"></div>
+        <div class="diya diya-1"></div>
+        <div class="diya diya-2"></div>
+        <div class="diya diya-3"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/120/120" alt="Epic Events Logo" class="logo-img">
+            <h1>Epic Events</h1>
+        </div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#programs" class="active">Programs <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="wedding.html">Weddings</a></li>
+                        <li><a href="corporate.html">Corporate</a></li>
+                        <li><a href="cultural.html">Cultural Events</a></li>
+                        <li><a href="celebrations.html" class="active">Private Celebrations</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#performers">Performers</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#book" class="book-btn">Book an Event</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <section class="celebrations-hero">
+        <div class="celebrations-hero-content">
+            <h1>Private Celebrations</h1>
+            <p>Make your special moments truly unforgettable with our personalized event planning services. From birthdays to anniversaries, we create magical memories that last a lifetime.</p>
+            <a href="#contact" class="btn">Plan Your Celebration</a>
+        </div>
+    </section>
+
+    <section class="celebration-services">
+        <div class="container">
+            <h2 class="section-title">Our Celebration Services</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Birthday Parties">
+                    </div>
+                    <div class="service-content">
+                        <h3>Birthday Celebrations</h3>
+                        <p>Themed birthday parties for all ages, from children's fun-filled adventures to elegant adult milestone celebrations.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Anniversary">
+                    </div>
+                    <div class="service-content">
+                        <h3>Anniversary Parties</h3>
+                        <p>Romantic and heartfelt anniversary celebrations that honor your journey together and create new memories.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Milestone Events">
+                    </div>
+                    <div class="service-content">
+                        <h3>Milestone Events</h3>
+                        <p>Significant life events like graduations, retirements, baby showers, and other special accomplishments.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Family Reunions">
+                    </div>
+                    <div class="service-content">
+                        <h3>Family Reunions</h3>
+                        <p>Thoughtfully planned gatherings that bring families together with activities for all generations to enjoy.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Personalized Touch</h3>
+                    <p>We create celebrations that reflect your personality and style with custom themes and details.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Magical Moments</h3>
+                    <p>We specialize in creating those special "wow" moments that become cherished memories.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Stress-Free Planning</h3>
+                    <p>We handle all the details so you can relax and enjoy your celebration as a guest.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Exceptional Execution</h3>
+                    <p>Our attention to detail ensures flawless execution from start to finish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="celebrations-gallery">
+        <div class="container">
+            <h2 class="section-title">Celebration Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Birthday Celebration">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Anniversary Party">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Graduation Celebration">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Baby Shower">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Family Reunion">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Themed Party">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <div class="client-img">
+                        <img src="/api/placeholder/200/200" alt="Client">
+                    </div>
+                    <p class="client-quote">"Epic Events planned my daughter's sweet sixteen and it was absolutely magical! They thought of every detail and created a celebration she will remember for a lifetime."</p>
+                    <p class="client-name">Anjali Desai, Mumbai</p>
+                </div>
+                <!-- More testimonials would be controlled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Our Packages</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Intimate Package</h3>
+                        <div class="price">₹75,000</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Event Planning & Coordination</li>
+                            <li>Basic Decor & Setup</li>
+                            <li>Catering Coordination</li>
+                            <li>Music & Entertainment</li>
+                            <li>Up to 50 Guests</li>
+                        </ul>
+                        <a href="#book" class="btn">Choose Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Classic Package</h3>
+                        <div class="price">₹1,50,000</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Complete Event Management</li>
+                            <li>Custom Theme & Elegant Decor</li>
+                            <li>Premium Catering Options</li>
+                            <li>Entertainment & Photography</li>
+                            <li>Up to 100 Guests</li>
+                        </ul>
+                        <a href="#book" class="btn">Choose Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Grand Package</h3>
+                        <div class="price">₹3,00,000+</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Luxury Event Experience</li>
+                            <li>Elaborate Custom Decor</li>
+                            <li>Gourmet Dining Experience</li>
+                            <li>Full Entertainment Production</li>
+                            <li>200+ Guests</li>
+                        </ul>
+                        <a href="#book" class="btn">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Create Magical Memories?</h2>
+            <p>Let us help you celebrate life's special moments with a beautifully crafted event that reflects your personal style.</p>
+            <a href="#book" class="btn">Book a Consultation</a>
+        </div>
+    </section>
+
+    <section id="book" class="booking">
+        <div class="container">
+            <h2 class="section-title">Let's Plan Your Celebration</h2>
+            <form class="booking-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="" disabled selected>Celebration Type</option>
+                        <option value="birthday">Birthday Party</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="milestone">Milestone Event</option>
+                        <option value="reunion">Family Reunion</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="date" placeholder="Event Date" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Number of Guests" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Tell us about your celebration vision" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/api/placeholder/120/120" alt="Epic Events Logo">
+                    <h3>Epic Events</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="wedding.html">Weddings</a></li>
+                        <li><a href="corporate.html">Corporate Events</a></li>
+                        <li><a href="cultural.html">Cultural Events</a></li>
+                        <li><a href="celebrations.html">Private Celebrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Event Street, Mumbai, India</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@epicevents.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Epic Events. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('#navbar').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Testimonial Slider
+        const testimonials = [
+            {
+                image: "/api/placeholder/200/200",
+                quote: "Epic Events planned my daughter's sweet sixteen and it was absolutely magical! They thought of every detail and created a celebration she will remember for a lifetime.",
+                name: "Anjali Desai, Mumbai"
+            },
+            {
+                image: "/api/placeholder/200/200",
+                quote: "We hired Epic Events for our 25th wedding anniversary. The team created an elegant and romantic evening that perfectly celebrated our journey together.",
+                name: "Rajesh & Meena Sharma, Delhi"
+            },
+            {
+                image: "/api/placeholder/200/200",
+                quote: "Our family reunion was a huge success thanks to Epic Events. They organized activities for all ages and helped us create wonderful new family memories.",
+                name: "Patel Family, Gujarat"
+            }
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialSlide = document.querySelector('.testimonial-slide');
+
+        function changeTestimonial() {
+            const testimonial = testimonials[currentTestimonial];
+            testimonialSlide.innerHTML = `
+                <div class="client-img">
+                    <img src="${testimonial.image}" alt="Client">
+                </div>
+                <p class="client-quote">"${testimonial.quote}"</p>
+                <p class="client-name">${testimonial.name}</p>
+            `;
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+
+        // Change testimonial every 5 seconds
+        setInterval(changeTestimonial, 5000);
+
+        // Gallery image modal functionality would be added here in a production site
+    </script>
+</body>
+</html>

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Ceremonies - Epic Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Cultural Page Specific Styles */
+        .cultural-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            margin-top: 0;
+            position: relative;
+        }
+
+        .cultural-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .cultural-hero-content {
+            max-width: 800px;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .cultural-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .cultural-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cultural-services {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.4rem;
+        }
+
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .performers {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .performer-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .performer-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .performer-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .performer-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .performer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .performer-card:hover .performer-img img {
+            transform: scale(1.1);
+        }
+
+        .performer-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .performer-content h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.4rem;
+        }
+
+        .performer-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .performer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .performer-social a {
+            color: #e91e63;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .performer-social a:hover {
+            color: #c2185b;
+        }
+
+        .ceremony-container {
+            padding: 60px 0;
+        }
+
+        .ceremony-container h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+
+        .ceremony-container h2:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e91e63;
+        }
+
+        .ceremony-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .ceremony-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .ceremony-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .ceremony-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .ceremony-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .ceremony-card:hover .ceremony-img img {
+            transform: scale(1.1);
+        }
+
+        .ceremony-content {
+            padding: 20px;
+        }
+
+        .ceremony-content h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .ceremony-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .hindu-ceremonies {
+            background-color: #fff8e1;
+        }
+
+        .muslim-ceremonies {
+            background-color: #e8f5e9;
+        }
+
+        .christian-ceremonies {
+            background-color: #e3f2fd;
+        }
+
+        .other-ceremonies {
+            background-color: #fff0f0;
+        }
+
+        .btn-ceremony {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e91e63;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-ceremony:hover {
+            background-color: #c2185b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e91e63;
+        }
+
+        .section-title p {
+            color: #666;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Booking Form Styles */
+        .booking {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .booking-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #e91e63;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #c2185b;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .footer-links h4,
+        .footer-contact h4,
+        .footer-social h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4:after,
+        .footer-contact h4:after,
+        .footer-social h4:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #e91e63;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #e91e63;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+
+        .footer-contact p i {
+            margin-right: 10px;
+            color: #e91e63;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #e91e63;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #444;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation would go here -->
+
+    <!-- Hero Section -->
+    <section class="cultural-hero">
+        <div class="cultural-hero-content">
+            <h1>Indian Cultural Ceremonies</h1>
+            <p>Celebrate life's sacred moments with traditional elegance and cultural authenticity. We specialize in planning and executing various cultural ceremonies respecting traditions and customs.</p>
+            <a href="#book" class="btn">Enquire Now</a>
+        </div>
+    </section>
+
+    <!-- Hindu Ceremonies Section -->
+    <section class="ceremony-container hindu-ceremonies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hindu Ceremonies</h2>
+                <p>We organize auspicious Hindu ceremonies with authentic rituals and traditional arrangements.</p>
+            </div>
+            <div class="ceremony-cards">
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Naming Ceremony">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Namakaran (Naming Ceremony)</h3>
+                        <p>A sacred ceremony where the newborn baby is given a name in the presence of family members, following traditional rituals and customs.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Seemantham">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Seemantham (Pregnancy Ceremony)</h3>
+                        <p>Celebrating the pregnancy, this ceremony is performed during the 7th or 8th month to bless the mother and unborn child for safe delivery.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Griha Pravesh">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Griha Pravesh (House Warming)</h3>
+                        <p>A traditional ceremony performed before entering a new home to purify the space and invite prosperity and positive energy.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Satyanarayana Puja">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Satyanarayana Puja</h3>
+                        <p>A divine worship ceremony dedicated to Lord Vishnu, performed to seek blessings for prosperity, well-being, and success in new endeavors.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Muslim Ceremonies Section -->
+    <section class="ceremony-container muslim-ceremonies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Muslim Ceremonies</h2>
+                <p>We arrange traditional Muslim ceremonies with utmost respect to customs and traditions.</p>
+            </div>
+            <div class="ceremony-cards">
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Aqiqah">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Aqiqah</h3>
+                        <p>A ceremony to welcome and celebrate the birth of a child in the Muslim tradition, typically held on the 7th day after birth.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Bismillah">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Bismillah Ceremony</h3>
+                        <p>Marks the beginning of a child's religious education, usually performed when the child is four years, four months, and four days old.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Nikah">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Nikah</h3>
+                        <p>The Islamic marriage ceremony that unites bride and groom in a sacred bond, performed according to traditional customs.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Milad">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Milad Function</h3>
+                        <p>A gathering to commemorate special occasions with prayers, religious discourse, and communal meals.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Christian Ceremonies Section -->
+    <section class="ceremony-container christian-ceremonies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Christian Ceremonies</h2>
+                <p>We organize significant Christian sacraments and ceremonies with reverence and attention to detail.</p>
+            </div>
+            <div class="ceremony-cards">
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Baptism">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Baptism</h3>
+                        <p>A sacred ceremony marking one's entrance into the Christian faith, symbolizing purification and rebirth through water.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="First Holy Communion">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>First Holy Communion</h3>
+                        <p>A significant ceremony where a person first receives the Eucharist sacrament, typically celebrated with family and community.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Confession">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Confession</h3>
+                        <p>The Sacrament of Reconciliation where faithful confess their sins to receive absolution and spiritual guidance.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Confirmation">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Confirmation</h3>
+                        <p>A sacrament that strengthens and confirms faith, typically received during adolescence as a mature affirmation of baptismal promises.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Religious Ceremonies Section -->
+    <section class="ceremony-container other-ceremonies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Other Religious Ceremonies</h2>
+                <p>We respect and organize ceremonies from various other Indian religious traditions with authenticity and care.</p>
+            </div>
+            <div class="ceremony-cards">
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Sikh Ceremonies">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Sikh Ceremonies</h3>
+                        <p>We organize traditional Sikh ceremonies including Naam Karan, Dastar Bandi, and Amrit Sanskar with proper arrangements for Gurdwara services.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Jain Ceremonies">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Jain Ceremonies</h3>
+                        <p>Traditional Jain ceremonies including Panchakalyanak and other rituals arranged with strict adherence to Jain principles of non-violence.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Buddhist Ceremonies">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Buddhist Ceremonies</h3>
+                        <p>Buddhist religious ceremonies organized with proper arrangements for monks, meditation spaces, and traditional offerings.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+                <div class="ceremony-card">
+                    <div class="ceremony-img">
+                        <img src="/api/placeholder/400/300" alt="Parsi Ceremonies">
+                    </div>
+                    <div class="ceremony-content">
+                        <h3>Parsi Ceremonies</h3>
+                        <p>Traditional Zoroastrian ceremonies including Navjote and other significant rituals conducted with authentic arrangements.</p>
+                        <a href="#book" class="btn-ceremony">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="cultural-services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us For Cultural Ceremonies</h2>
+                <p>When it comes to cultural ceremonies, attention to detail and respect for traditions are paramount.</p>
+            </div>
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Authentic Arrangements">
+                    </div>
+                    <div class="service-content">
+                        <h3>Authentic Arrangements</h3>
+                        <p>We ensure every ritual and ceremony follows authentic traditions with proper arrangements for pandits, maulvis, priests, or other religious officiants.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Customized Experiences">
+                    </div>
+                    <div class="service-content">
+                        <h3>Customized Experiences</h3>
+                        <p>Every ceremony is tailored to meet your family's specific traditions, customs, and preferences while maintaining religious authenticity.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Complete Management">
+                    </div>
+                    <div class="service-content">
+                        <h3>Complete Management</h3>
+                        <p>From venue selection to catering, decoration, and coordination of religious procedures, we handle everything so you can focus on the ceremony.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/400/300" alt="Cultural Sensitivity">
+                    </div>
+                    <div class="service-content">
+                        <h3>Cultural Sensitivity</h3>
+                        <p>Our team understands the nuances of different Indian religious practices and ensures respectful execution of all ceremonies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="performers" style="background-color: #f5f5f5;">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Here's what families have to say about our cultural ceremony services</p>
+            </div>
+            <div class="performer-cards">
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="/api/placeholder/300/300" alt="Client Testimonial">
+                    </div>
+                    <div class="performer-content">
+                        <h3>Sharma Family</h3>
+                        <p>"The Griha Pravesh ceremony for our new home was conducted flawlessly. Epic Events arranged everything authentically, from the puja items to the pandit ji."</p>
+                        <div class="performer-social">
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="/api/placeholder/300/300" alt="Client Testimonial">
+                    </div>
+                    <div class="performer-content">
+                        <h3>Khan Family</h3>
+                        <p>"Our son's Aqiqah ceremony was beautifully arranged with all traditional elements. The team was respectful of our customs and made the day truly special."</p>
+                        <div class="performer-social">
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="/api/placeholder/300/300" alt="Client Testimonial">
+                    </div>
+                    <div class="performer-content">
+                        <h3>Thomas Family</h3>
+                        <p>"Our daughter's First Communion was a day to remember thanks to Epic Events. Every detail was managed professionally while keeping the ceremony's sanctity."</p>
+                        <div class="performer-social">
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star-half-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="/api/placeholder/300/300" alt="Client Testimonial">
+                    </div>
+                    <div class="performer-content">
+                        <h3>Singh Family</h3>
+                        <p>"The Satyanarayana Puja for our business inauguration was conducted with all proper rituals. Highly recommend Epic Events for any traditional ceremony."</p>
+                        <div class="performer-social">
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                            <a href="#"><i class="fas fa-star"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Cultural Ceremony Consultation</h2>
+            <form class="booking-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Your Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" placeholder="Ceremony Date" required>
+                </div>
+                <div
